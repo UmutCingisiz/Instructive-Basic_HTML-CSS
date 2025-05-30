@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Dimensional Array Initialization and Frequency Count</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(99, 1fr);
+            gap: 1px; 
+        }
+
+        .grid-item {
+            background-color: bisque;
+            border: 1px solid black !important;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Two-Dimensional Array Initialization and Frequency Count</h2>
+    <div class="grid-container" id="result"></div>
+
+    <script>
+        function initializeArrayAndCountFrequency() {
+            var array = new Array(99); 
+            var frequency = {};
+
+            
+            for (var i = 0; i < 99; i++) {
+                array[i] = new Array(99); 
+                for (var j = 0; j < 99; j++) {
+                    array[i][j] = Math.floor(Math.random() * 100) + 1; 
+                    var num = array[i][j];
+                    frequency[num] = (frequency[num] || 0) + 1; 
+                }
+            }
+
+            
+            var resultDiv = document.getElementById("result");
+            for (var i = 0; i < 99; i++) {
+                for (var j = 0; j < 99; j++) {
+                    var gridItem = document.createElement("div");
+                    gridItem.className = "grid-item";
+                    gridItem.textContent = array[i][j];
+                    resultDiv.appendChild(gridItem);
+                }
+            }
+
+           
+            for (var key in frequency) {
+                var p = document.createElement("p");
+                p.textContent = "Number: " + key + ", Frequency: " + frequency[key];
+                resultDiv.appendChild(p);
+            }
+        }
+
+        window.onload = initializeArrayAndCountFrequency;
+    </script>
+</body>
+</html>

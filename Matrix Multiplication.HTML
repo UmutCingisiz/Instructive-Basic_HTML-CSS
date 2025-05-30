@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Matrix Multiplication</title>
+</head>
+<body>
+    <h2>Enter Elements for Matrix A</h2>
+    <div id="matrixA"></div>
+
+    <h2>Enter Elements for Matrix B</h2>
+    <div id="matrixB"></div>
+
+    <button onclick="multiplyAndDisplay()">Multiply Matrices</button>
+
+    <h2>Matrix Multiplication Result</h2>
+    <div id="result"></div>
+
+    <script>
+        function createMatrixInput(id, matrixName) {
+            var matrixInput = document.createElement("div");
+            matrixInput.innerHTML = "<p>Enter elements for " + matrixName + ":</p>";
+
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    var inputId = matrixName + "-" + i + "-" + j;
+                    matrixInput.innerHTML += "<input type='number' id='" + inputId + "' placeholder='Element " + (i + 1) + "," + (j + 1) + "'>";
+                }
+                matrixInput.innerHTML += "<br>";
+            }
+
+            document.getElementById(id).appendChild(matrixInput);
+        }
+
+        function createMatrix(matrixName) {
+            var matrix = [];
+            for (var i = 0; i < 3; i++) {
+                matrix[i] = [];
+                for (var j = 0; j < 3; j++) {
+                    var inputId = matrixName + "-" + i + "-" + j;
+                    matrix[i][j] = parseFloat(document.getElementById(inputId).value);
+                }
+            }
+            return matrix;
+        }
+
+        function multiplyMatrices(matrixA, matrixB) {
+            var result = [];
+            for (var i = 0; i < 3; i++) {
+                result[i] = [];
+                for (var j = 0; j < 3; j++) {
+                    result[i][j] = 0;
+                    for (var k = 0; k < 3; k++) {
+                        result[i][j] += matrixA[i][k] * matrixB[k][j];
+                    }
+                }
+            }
+            return result;
+        }
+
+        function displayMatrix(matrix, id, matrixName) {
+            var matrixDisplay = document.createElement("div");
+            matrixDisplay.innerHTML = "<p>" + matrixName + ":</p>";
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    matrixDisplay.innerHTML += matrix[i][j] + " ";
+                }
+                matrixDisplay.innerHTML += "<br>";
+            }
+            document.getElementById(id).appendChild(matrixDisplay);
+        }
+
+        function multiplyAndDisplay() {
+            var matrixA = createMatrix("Matrix A");
+            var matrixB = createMatrix("Matrix B");
+            var resultMatrix = multiplyMatrices(matrixA, matrixB);
+            displayMatrix(resultMatrix, "result", "Multiplication Result");
+        }
+
+        createMatrixInput("matrixA", "Matrix A");
+        createMatrixInput("matrixB", "Matrix B");
+    </script>
+</body>
+</html>
