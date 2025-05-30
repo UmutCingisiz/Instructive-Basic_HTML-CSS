@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gross Pay Calculation</title>
+</head>
+<body>
+    <h2>Employee Gross Pay</h2>
+    <script>
+        var employees = 3;
+        var payRate, hoursWorked, grossPay;
+
+        for (var i = 1; i <= employees; i++) {
+            hoursWorked = parseInt(prompt("Enter the number of hours worked by Employee " + i + " last week:"));
+            payRate = parseFloat(prompt("Enter the hourly rate for Employee " + i + ":"));
+
+            if (hoursWorked <= 40) {
+                grossPay = hoursWorked * payRate;
+            } else {
+                grossPay = (40 * payRate) + ((hoursWorked - 40) * (payRate * 1.5));
+            }
+
+            document.write("<p>Employee " + i + "'s gross pay: $" + grossPay.toFixed(2) + "</p>");
+        }
+    </script>
+</body>
+</html>
