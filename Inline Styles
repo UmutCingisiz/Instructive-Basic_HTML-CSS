@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="Utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title> INLINE STYLES </title>
+            <head>
+                <body>
+                    <p>
+                        This text does not have any style applied to it.
+                    </p>
+                    <!-- The styles attribute allows you to declare-->
+                    <!-- inline styles. Separe multiple-->
+                    <!-- style properties with a semicolon-->
+                    <p style="font-size: 20pt;"> This text has the <em>font-size</em> style applied to it making it 20pt
+                    </p>
+
+                    <p style="font-size: 20pt; color: deepskyblue">
+                    This text has the <em>font-size</em> and <em>color</em> styles applied to it, making it 20pt and deepskyblue
+                </p>
+                </body>
+            </head>
