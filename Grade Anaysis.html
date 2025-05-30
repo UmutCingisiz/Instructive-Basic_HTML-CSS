@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Analysis</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(174, 68, 68);
+        }
+    </style>
+</head>
+<body>
+    <h2>Grade Analysis</h2>
+    <p>
+        Enter the Grades (separated by commas):
+        <input type="text" id="inputScores">
+    </p>
+    <button onclick="analyzeGrades()">Analyze Grades</button>
+    <p id="grades"></p>
+
+    <table id="gradeTable">
+        <tr>
+            <th>Grade</th>
+            <th>Frequency</th>
+        </tr>
+        <tr><td>A</td><td id="gradeA">0</td></tr>
+        <tr><td>B</td><td id="gradeB">0</td></tr>
+        <tr><td>C</td><td id="gradeC">0</td></tr>
+        <tr><td>D</td><td id="gradeD">0</td></tr>
+        <tr><td>F</td><td id="gradeF">0</td></tr>
+    </table>
+
+    <script>function analyzeGrades() {
+      const inputScores = document.getElementById('inputScores').value.trim();
+      if (!inputScores) {
+        alert("Please enter valid grades.");
+        return;
+      }
+
+      const scores = inputScores.split(',').map(score => parseFloat(score.trim()));
+
+      let gradeA = 0, gradeB = 0, gradeC = 0, gradeD = 0, gradeF = 0;
+
+      scores.forEach(score => {
+        if (isNaN(score) || score < 0 || score > 100) {
+          alert("Invalid grade detected. Please enter only numbers between 0 and 100.");
+          return;
+        }
+
+        if (score >= 80) gradeA++;
+        else if (score >= 70) gradeB++;
+        else if (score >= 60) gradeC++;
+        else if (score >= 50) gradeD++;
+        else gradeF++;
+      });
+
+      const gradeResult = [];
+      if (gradeA > 0) gradeResult.push(`${gradeA} - A`);
+      if (gradeB > 0) gradeResult.push(`${gradeB} - B`);
+      if (gradeC > 0) gradeResult.push(`${gradeC} - C`);
+      if (gradeD > 0) gradeResult.push(`${gradeD} - D`);
+      if (gradeF > 0) gradeResult.push(`${gradeF} - F`);
+
+      document.getElementById('grades').textContent = `Grades: ${gradeResult.join(', ')}`;
+      document.getElementById('gradeA').textContent = gradeA;
+      document.getElementById('gradeB').textContent = gradeB;
+      document.getElementById('gradeC').textContent = gradeC;
+      document.getElementById('gradeD').textContent = gradeD;
+      document.getElementById('gradeF').textContent = gradeF;
+    }</script>
+</body>
+</html>
